@@ -98,7 +98,7 @@ class Student {
         detail.userPass = await 
         hash(detail.userPass, 15);
         // This information will be used for authentication.
-        let user = {
+        let student = {
             firstName:detail.firstName,
             lastName:detail.lastName,
             institutionName:detail.institutionName,
@@ -120,7 +120,7 @@ class Student {
                 res.status(401).json({err});
             }else {
                 // Create a token
-                const jwToken = createToken(user);
+                const jwToken = createToken(student);
                 // This token will be saved in the cookie. 
                 // The duration is in milliseconds.
                 res.cookie("registeredUser", jwToken, {
