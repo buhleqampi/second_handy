@@ -18,8 +18,8 @@ app.use(
     cors(),
     cookieParser(),
     express.json(),
-    express.urlencoded({extended: false})
-)
+    express.urlencoded({extended: false}),
+);
 
 app.listen(port, ()=> {
     console.log(`Server is running on port ${port}`)
