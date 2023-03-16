@@ -1,15 +1,19 @@
 import { createStore } from 'vuex'
 import axios from 'axios';
-const secondURL = 'https://second-handy.onrender.com/'
+const secondURL = 'https:localhost:8080'
 export default createStore({
   state: {
     students: null,
     student:null,
     books:null,
     book:null,
-    message:null
+    message:null,
+    showSpinner: true
       },
   getters: {
+    showSpinner(state) {
+      return state.showSpinner
+    }
   },
   mutations: {
     setStudents(state, values){
@@ -26,6 +30,9 @@ export default createStore({
   },
   setMessage(state, value) {
     state.message = value
+  },
+  setSpinner(state, value) {
+    state.showSpinner - value
   }
 },
   actions: {

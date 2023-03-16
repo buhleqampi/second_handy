@@ -1,24 +1,5 @@
     <template>
-        <div class="container">
-    <div class="form">
-        <form action="https://formspree.io/f/xoqzwqgn" method="POST" class="row g-3">
-        <div class="card">
-        <p id="heading">Login</p>
-        <div class="place">
-        <i class="fa-regular fa-user"></i><input type="text" class="placeholder" placeholder="Username" name="Username" required>
-        </div>
-        <div class="place">
-            <i class="fa-solid fa-lock"></i><input type="password" class="placeholder" placeholder="Password" name="Password" required>
-        </div>
-        <div class="btn">
-        <button class="button1">Login</button>
-        <button class="button2">Sign Up</button>
-        </div>
-        <button class="button3">Forgot Password</button>
-    </div>
-        </form>
-    </div>
-        </div>
+        <div></div>
     </template>
 
     <script>

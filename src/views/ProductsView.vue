@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div v-if="spinner">
+            <SpinnerComponent/>
+        </div>
+        <div v-else class="container">
             <div class="row" style="height 50%;">
             <h2>Products</h2>
             <div class="container-fluid">
@@ -18,13 +22,18 @@
             </div>  
             </div>
             </div>
+        </div>
     </div>
 </template>
 
 <script>
 import {computed} from '@vue/runtime-core';
 import {useStore} from 'vuex'; 
+import SpinnerComponent from "../components/SpinnerComponent.vue"
     export default {
+        components: {
+            SpinnerComponent
+        },
         setup(){
         const store= useStore();
         store.dispatch("fetchBooks");
