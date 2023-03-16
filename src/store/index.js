@@ -37,7 +37,7 @@ export default createStore({
 },
   actions: {
     async fetchStudents(context){
-      const res = await axios.get(`${secondURL}students`);
+      const res = await axios.get(`${'https://second-handy.onrender.com/'}students`);
       const {results, err} = await res.data;
       if(results) {
         context.commit('setStudents', results)
@@ -46,7 +46,7 @@ export default createStore({
     }
   },
     async fetchBooks(context){
-      const res = await axios.get(`${secondURL}books`);
+      const res = await axios.get(`${'https://second-handy.onrender.com/'}books`);
       const {results, err} = await res.data;
       if(results) {
         context.commit('setBooks', results)
@@ -54,18 +54,17 @@ export default createStore({
       context.commit('setMessage', err)
     }
   },
-    async signUp(context, payload){
-      const res = await axios.post(`${secondURL}signUp`, payload);
-      const {msg, err} = await res.data;
-      if(msg) {
-        context.commit('setMessage', msg);
-      }else {
-        context.commit('setMessage', err);
-        console.log(err);
-      }
+  async signUp(context, payload){
+    const res = await axios.post(`${secondURL}signUp`, payload);
+    const {msg, err} = await res.data;
+    if (msg) {
+      context.commit('setStudent', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
   },
-    async signIn(context,payload){
-      const result = await axios.post(`${secondURL}signIn`, payload);
+      async signIn(context,payload){
+      const result = await axios.post(`${'https://second-handy.onrender.com/'}signIn`, payload);
       const {res, err} = await result.data;
       if(res) {
         context.commit('setStudent', result);
