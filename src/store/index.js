@@ -54,22 +54,24 @@ export default createStore({
       context.commit('setMessage', err)
     }
   },
-    async register(context, payload){
-      const res = await axios.post(`${secondURL}register`, payload);
+    async signUp(context, payload){
+      const res = await axios.post(`${secondURL}signUp`, payload);
       const {msg, err} = await res.data;
       if(msg) {
         context.commit('setMessage', msg);
       }else {
         context.commit('setMessage', err);
+        console.log(err);
       }
   },
-    async login(context,payload){
-      const result = await axios.post(`${secondURL}/login`, payload);
+    async signIn(context,payload){
+      const result = await axios.post(`${secondURL}signIn`, payload);
       const {res, err} = await result.data;
       if(res) {
         context.commit('setStudent', result);
     }else {
       context.commit('setMessage', err);
+      console.log(err);
     }
   },
 },

@@ -65,8 +65,6 @@
     
 <script>
 // import { computed } from '@vue/runtime-core';
-
-
 // import { useStore } from 'vuex';
 export default {
     data() {
@@ -93,7 +91,7 @@ export default {
     },
     methods: {
         signUp() {
-            this.$store.dispatch("register", this.payload);
+            this.$store.dispatch("signUp", this.payload);
         }
     }
 }

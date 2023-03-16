@@ -1,123 +1,138 @@
     <template>
-        <div></div>
+        <div class="container">
+            <div class="card">
+                <form class="form" @submit.prevent="signIn">
+                <a class="signIn">Sign In</a>
+                <div class="input">
+                    <input type="email" required="required" v-model="payload.emailAdd">
+                    <span class="user">Email Address</span>
+                </div>
+                <div class="input">
+                    <input type="password" required="required" v-model="payload.userPass">
+                    <span class="user">Password</span>
+                </div>
+                <button type="submit" class="submit">SUBMIT</button>
+            </form>
+            </div>
+        </div>
     </template>
 
     <script>
     // import {computed} from 'vue@/runtime-core';
     // import {userStore} from 'vuex';
         export default {
-        setup() {
+            data () {
+                return {
+                    payload: {
+                        emailAdd: '',
+                        userPass:''
+                    }
+                }
+            },
+        computed:{
+            message(){
+                return this.$store.state.message
+            }
+        },
+        methods: {
+        signIn() {
+            this.$store.dispatch("signIn", this.payload);
         }
+    }
         }
     </script>
 
     <style  scoped>
-    .container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-bottom: 0.4em; 
-    background-color: white;
-    border-radius: 20px;
-    width:25rem;
-    padding-top: 10px;
-    margin-top: 40px;
-    }
-    #heading {
-    text-align: center;
-    margin: 2em;
-    color: white;
-    font-size: 1.2em;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 35px;
-    }
-    .card {
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em;
-    border-radius: 25px;
-    padding: 0.6em;
-    border: none;
-    outline: none;
-    color: white;
-    background-color: #171717;
-    
-    }
-    .place {
-    background: none;
-    border: none;
-    outline: none;
-    color:  #003cff;
-    } 
-    .card .btn {
-    display: flex; 
-    justify-content: center; 
-    flex-direction: row; 
-    margin-top: 2.5em; 
-    }
-    .button1 {
-    padding: 0.5em;
-    padding-left: 1.1em;
-    padding-right: 1.1em;
-    border-radius: 5px;
-    margin-right: 0.5em;
-    border: none;
-    outline: none;
-    transition: .4s ease-in-out;
-    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-    color: rgb(0, 0, 0);
-    }
-    .button1:hover {
-    background-image: linear-gradient(163deg, #00642f 0%, #13034b 100%);
-    color: #003cff;
-    }
-    .button2 {
-    padding: 0.5em;
-    padding-left: 2.3em;
-    padding-right: 2.3em;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    transition: .4s ease-in-out;
-    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-    color: rgb(0, 0, 0);
-    }
-    .button2:hover {
-    background-image: linear-gradient(163deg, #00642f 0%, #13034b 100%);
-    color:  #003cff;
-    }
-    .button3 {
-    margin-bottom: 3em;
-    padding: 0.5em;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    transition: .4s ease-in-out;
-    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-    color: rgb(0, 0, 0);
-    }
-    .button3:hover {
-    background-image: linear-gradient(163deg, #a00000fa 0%, #d10050 100%);
-    color:  #003cff;
-    }
-    .form {
-    border-radius: 0;
-    transition: all .2s;
-    }
-    .form:hover {
-    transform: scale(0.98);
-    border-radius: 20px;
-    }
-    .form:hover {
-    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
-    }
-    .placeholder {
-        background-color: white;
-        opacity: 1;
+    .signIn {
         color: black;
-        border-radius: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        display: block;
+        font-weight: bold;
+        font-size: x-large;
     }
+        .card{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 350px;
+            width: 300px;
+            flex-direction: column;
+            gap: 35px;
+            background: #e3e3e3;
+            box-shadow: 16px 16px 32px #c8c8c8,
+                -16px -16px 32px #fefefe;
+            border-radius: 8px;
+        }
+        
+        .input {
+            position: relative;
+            width: 250px;
+        }
+        
+        .input input {
+            width: 100%;
+            padding: 10px;
+            outline: none;
+            border: none;
+            color: #000;
+            font-size: 1em;
+            background: transparent;
+            border-left: 2px solid #000;
+            border-bottom: 2px solid #000;
+            transition: 0.1s;
+            border-bottom-left-radius: 8px;
+        }
+        
+        .input span {
+            margin-top: 5px;
+            position: absolute;
+            left: 0;
+            transform: translateY(-4px);
+            margin-left: 10px;
+            padding: 10px;
+            pointer-events: none;
+            font-size: 12px;
+            color: #000;
+            text-transform: uppercase;
+            transition: 0.5s;
+            letter-spacing: 3px;
+            border-radius: 8px;
+        }
+        
+        .input input:valid~span,
+        .input input:focus~span {
+            transform: translateX(113px) translateY(-15px);
+            font-size: 0.8em;
+            padding: 5px 10px;
+            background: #000;
+            letter-spacing: 0.2em;
+            color: #fff;
+            border: 2px;
+        }
+        
+        .input input:valid,
+        .input input:focus {
+            border: 2px solid #000;
+            border-radius: 8px;
+        }
+        
+        .submit {
+            height: 45px;
+            width: 100px;
+            border-radius: 5px;
+            border: 2px solid #000;
+            cursor: pointer;
+            background-color: transparent;
+            transition: 0.5s;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 1em;
+        }
+        
+        .submit:hover {
+            background-color: rgb(0, 0, 0);
+            color: white;
+        }
 </style>
