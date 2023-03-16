@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios';
-const secondURL = 'https:localhost:8080'
+const secondURL = 'https://second-handy.onrender.com/'
 export default createStore({
   state: {
     students: null,
