@@ -4,9 +4,8 @@ let db = require('../config')
 let {hash, compare, hashSync} = require('bcrypt');
 let {createToken} = require('../middleware/AuthenticatedUser');
 
-// User class
 class Student {
-    login(req, res) {
+    signIn(req, res) {
         const {emailAdd, userPass} = req.body
         const strQry =
         `
@@ -219,28 +218,28 @@ class Student {
                 })
             }
         }
-        class Donor {
-            fetchDonors(req, res) {
-                const strQry = `SELECT donorID, donorName, donorDescription, donorDetails, donorIMG
-                FROM Donors;`;
+        class Cart {
+            fetchCartBooks(req, res) {
+                const strQry = `SELECT cartID, studentID, id, price
+                FROM Cart;`;
                 db.query(strQry, (err, results)=> {
                     if(err) throw err;
                     res.status(200).json({results: results})
                 });
             }
-            fetchDonor(req, res) {
-                const strQry = `SELECT donorId, donorName, donorDescription, donorDetails, donorIMG
-                FROM Donors
-                WHERE donorID = ?;`;
+            fetchCart(req, res) {
+                const strQry = `SELECT cartId, studentID, id, price
+                FROM Cart
+                WHERE cartID = ?;`;
                 db.query(strQry, [req.params.id], (err, results)=> {
                     if(err) throw err;
                     res.status(200).json({results: results})
                 });
             }
-            addDonor(req, res) {
+            addToCart(req, res) {
                 const strQry = 
                 `
-                INSERT INTO Donors
+                INSERT INTO Cart
                 SET ?;
                 `;
                 db.query(strQry,[req.body],
@@ -253,12 +252,12 @@ class Student {
                     }
                 );    
             }
-            updateDonor(req, res) {
+            updateCart(req, res) {
                 const strQry = 
                 `
-                UPDATE Donors
+                UPDATE Cart
                 SET ?
-                WHERE donorID = ?
+                WHERE cartID = ?
                 `;
                 db.query(strQry,[req.body, req.params.id],
                     (err)=> {
@@ -270,11 +269,11 @@ class Student {
                     }
                 );    
             }
-            deleteDonor(req, res) {
+            deleteCart(req, res) {
                 const strQry = 
                 `
-                DELETE FROM Donors
-                WHERE donorID = ?;
+                DELETE FROM Cart
+                WHERE cartID = ?;
                 `;
                 db.query(strQry,[req.params.id], (err)=> {
                     if(err) res.status(400).json({err: "The donor cannot be deleted."});
@@ -285,5 +284,5 @@ class Student {
         module.exports = {
             Student, 
             Book, 
-            Donor
+            Cart
         }

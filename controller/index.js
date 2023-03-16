@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const route = express.Router();
-const {Student, Book, Donor} = require('../model');
+const {Student, Book, Cart} = require('../model');
 const student = new Student();
 const book = new Book();
-const donor = new Donor();
+const cart = new Cart();
 
 // GET
 route.get('/', (req,res)=> {
@@ -26,22 +26,22 @@ route.get('/books', (req,res)=> {
 route.get('/book: id', (req,res)=> {
     book.fetchBook(req, res);
 })
-route.get('/donors', (req,res)=> {
-    donor.fetchDonors(req, res);
+route.get('/cartbooks', (req,res)=> {
+    cart.fetchCartBooks(req, res);
 })
-route.get('/donor: id', (req,res)=> {
-    donor.fetchDonor(req, res);
+route.get('/cart:id', (req,res)=> {
+    cart.fetchCart(req, res);
 })
 
 
 // POST
 // login an user
-route.post('/login', bodyParser.json(), (req,res)=> {
-    student.login(req, res);
+route.post('/signIn', bodyParser.json(), (req,res)=> {
+    student.signIn(req, res);
 });
 
 // register an user
-route.post('/register', bodyParser.json(), (req, res)=> {
+route.post('/signUp', bodyParser.json(), (req, res)=> {
     student.createStudent(req, res);
 });
 
@@ -49,9 +49,9 @@ route.post('/register', bodyParser.json(), (req, res)=> {
 route.post('/book', bodyParser.json(), (req,res)=> {
     book.addBook(req, res);
 });
-// Create a new donor 
-route.post('/donor', bodyParser.json(), (req, res)=> {
-    donor.addDonor(req, res);
+// Putting a product into a cart
+route.post('/cart', bodyParser.json(), (req, res)=> {
+    cart.addToCart(req, res);
 });
 
 // PUT
@@ -61,8 +61,8 @@ route.put('/student/:id', bodyParser.json(), (req, res)=> {
 route.put('/book/:id', bodyParser.json(), (req,res)=>{
     book.updateBook(req,res);
 })
-route.put('/donor/:id', bodyParser.json(), (req,res)=>{
-    donor.updateDonor(req,res);
+route.put('/cart/:id', bodyParser.json(), (req,res)=>{
+    cart.updateCart(req,res);
 })
 
 
@@ -73,8 +73,8 @@ route.delete('/student/:id', bodyParser.json, (req, res)=> {
 route.delete('/book/:id', bodyParser.json, (req,res)=>{
     book.deleteBook(req, res);
 })
-route.delete('/donor/:id', bodyParser.json, (req,res)=>{
-    donor.deleteDonor(req, res);
+route.delete('/cart/:id', bodyParser.json, (req,res)=>{
+    cart.deleteCart(req, res);
 })
 
 module.exports = route;
