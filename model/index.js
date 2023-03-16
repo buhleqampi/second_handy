@@ -99,8 +99,17 @@ class Student {
         hash(detail.userPass, 15);
         // This information will be used for authentication.
         let user = {
+            firstName:detail.firstName,
+            lastName:detail.lastName,
+            institutionName:detail.institutionName,
+            studentNumber:detail.studentNumber,
+            gender:detail.gender,
+            userRole:detail.userRole,
+            userProfile:detail.userProfile,
+            cellphoneNumber:detail.cellphoneNumber,
             emailAdd: detail.emailAdd,
-            userPass: detail.userPass
+            userPass: detail.userPass,
+            registrationDate:detail.registrationDate
         }
         // sql query
         const strQry =
