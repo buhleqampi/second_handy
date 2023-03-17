@@ -24,10 +24,10 @@
             data () {
                 return {
                     payload: {
-                        emailAdd: '',
-                        userPass:''
-                    }
-                }
+                        emailAdd: "",
+                        userPass:"",
+                    },
+                };
             },
         computed:{
             message(){

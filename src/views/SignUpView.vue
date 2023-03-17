@@ -51,10 +51,6 @@
                     <input required class="form-control" type="date" v-model="payload.joinDate">
                 </div>
                 <div class="form-group">
-                    <label for="confirm-password">Confirm Password:</label>
-                    <input required class="form-control" type="password" v-model="payload.userPass">
-                </div>
-                <div class="form-group">
                     <p class="lead">{{ message }}</p>
                 </div>
                 <button type="submit" class="btn btn-secondary">Submit</button>
@@ -77,7 +73,7 @@ export default {
                 gender: '',
                 userPass: '',
                 userRole: '',
-                userProfile: 'https://i.postimg.cc/XvzGSWrG/Siba.jpg',
+                userProfile: '',
                 emailAdd: '',
                 cellphoneNumber: '',
                 registrationDate: ''
@@ -91,10 +87,23 @@ export default {
     },
     methods: {
         signUp() {
-            this.$store.dispatch("signUp", this.payload);
+            let data = {
+                firstName: this.payload.firstName,
+                lastName: this.payload.lastName,
+                institutionName: this.payload.institutionName,
+                studentNumber: this.payload.studentNumber,
+                gender: this.payload.gender,
+                userPass: this.payload.userPass,
+                userRole: this.payload.userRole,
+                userProfile:this.payload.userProfile,
+                emailAdd: this.payload.emailAdd,
+                cellphoneNumber: this.payload.cellphoneNumber,
+                registrationDate: this.payload.registrationDate,
+            };
+            this.$store.dispatch("signUp", data);
         }
-    }
-}
+        }
+    };
 </script>
     
 <style scoped>

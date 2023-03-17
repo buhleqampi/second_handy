@@ -8,7 +8,8 @@ export default createStore({
     books:null,
     book:null,
     message:null,
-    showSpinner: true
+    showSpinner: true,
+    loggedUser:null,
       },
   getters: {
     showSpinner(state) {
@@ -33,7 +34,10 @@ export default createStore({
   },
   setSpinner(state, value) {
     state.showSpinner - value
-  }
+  },
+  setLoggedUser(state, value) {
+    state.loggedUser = value;
+},
 },
   actions: {
     async fetchStudents(context){
@@ -55,23 +59,28 @@ export default createStore({
     }
   },
   async signUp(context, payload){
+    console.log("its working?");
     const res = await axios.post(`${secondURL}signUp`, payload);
-    const {msg, err} = await res.data;
-    if (msg) {
-      context.commit('setStudent', msg);
+    const {result, err} = await res.data;
+    if (result, err) {
+      console.log(result);
+      context.commit('setMessage', result);
     }else {
       context.commit('setMessage', err);
     }
   },
       async signIn(context,payload){
       const result = await axios.post(`${'https://second-handy.onrender.com/'}signIn`, payload);
-      const {res, err} = await result.data;
+      const {res, msg, err} = await result.data;
       if(res) {
-        context.commit('setStudent', result);
+        context.commit('setLoggedUser', res);
+        console.log(res);
+        context.commit('setMessage', msg);
     }else {
       context.commit('setMessage', err);
       console.log(err);
     }
   },
 },
-})
+  },
+  );
