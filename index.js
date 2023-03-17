@@ -19,7 +19,7 @@ app.use((req, res, next)=> {
 app.use(
     cookieParser(),
     cors(),
-    router
+    route
     );
     app.use(
     express.json(),

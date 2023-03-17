@@ -9,17 +9,9 @@ class Student {
         const {emailAdd, userPass} = req.body
         const strQry =
         `
-        SELECT studentID,
-        firstName,
-        lastName,
-        institutionName,
-        studentNumber,
-        gender,
-        userPass,
-        userRole,
-        userProfile,
-        emailAdd
-        FROM Students WHERE emailAdd = '${emailAdd}';
+        SELECT studentID, firstName, lastName, institutionName, studentNumber, gender, userPass, userRole, userProfile, emailAdd
+        FROM Students
+         WHERE emailAdd = '${emailAdd}';
         `
         db.query(strQry, async (err, data) => {
             if(err) throw err;
