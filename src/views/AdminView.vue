@@ -2,11 +2,11 @@
 
         <div class="container">
             <div>
-                <div v-if="spinner">
+                <!-- <div v-if="spinner">
                     <SpinnerComponent/>
-                </div>
-                <div v-else class="container-fluid">
-            <div class="row">
+                </div> -->
+                <!-- <div v-else class="container-fluid"> -->
+            <div class="col m-4">
                 <h1>Students</h1>
                 <button type="button" class="btn btn-success" id="bam">Add Student</button>
             </div>
@@ -65,18 +65,18 @@
                     </tbody>
                 </table>
             </div>
-                </div>
+                <!-- </div> -->
         </div>
         </div>
     </template>
     <script>
     import {computed} from '@vue/runtime-core';
     import {useStore} from 'vuex';
-    import SpinnerComponent from '../components/SpinnerComponent.vue';
+    // import SpinnerComponent from '../components/SpinnerComponent.vue';
     export default {
-        components: {
-            SpinnerComponent
-        },
+        // components: {
+        //     SpinnerComponent
+        // },
         setup() {
             const store = useStore();
             store.dispatch("fetchStudents");
@@ -85,11 +85,11 @@
             computed( ()=>store.state.students);
             const books =
             computed( ()=> store.state.books);
-            const spinner = computed (()=> store.state.showSpinner);
+            // const spinner = computed (()=> store.state.showSpinner);
             return {
                 students,
                 books,
-                spinner
+                // spinner
             }
         }
     }

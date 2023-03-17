@@ -2,15 +2,16 @@
         <div class="container">
             <div class="card">
                 <form class="form" @submit.prevent="signIn">
-                <a class="signIn">Sign In</a>
+                <a class="signIn">Sign In</a>{{this.loggedUser?.firstName}}
                 <div class="input">
-                    <input type="email" required="required" v-model="payload.emailAdd">
+                    <input type="email" required v-model="payload.emailAdd">
                     <span class="user">Email Address</span>
                 </div>
                 <div class="input">
-                    <input type="password" required="required" v-model="payload.userPass">
+                    <input type="password" required v-model="payload.userPass">
                     <span class="user">Password</span>
                 </div>
+                <LogoutComp/>
                 <button type="submit" class="submit">SUBMIT</button>
             </form>
             </div>
@@ -18,28 +19,31 @@
     </template>
 
     <script>
-    // import {computed} from 'vue@/runtime-core';
-    // import {userStore} from 'vuex';
+import LogoutComp from '@/components/LogoutComp.vue';
+
         export default {
-            data () {
-                return {
-                    payload: {
-                        emailAdd: "",
-                        userPass:"",
-                    },
-                };
+    data() {
+        return {
+            payload: {
+                emailAdd: "",
+                userPass: "",
             },
-        computed:{
-            message(){
-                return this.$store.state.message
-            }
-        },
-        methods: {
+        };
+    },
+    computed: {
+        loggedUser() {
+            return this.$store.state.loggedUser;
+        }
+    },
+    methods: {
         signIn() {
             this.$store.dispatch("signIn", this.payload);
+            localStorage.setItem("user", JSON.stringify(this.$store.state.user));
+            //    localStorage.setItem('token', jwToken);
         }
-    }
-        }
+    },
+    components: { LogoutComp }
+}
     </script>
 
     <style  scoped>

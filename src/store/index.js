@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios';
-const secondURL = 'https://second-handy.onrender.com/'
+const secondURL = 'https://second-handy-ecommerce.onrender.com/'
 export default createStore({
   state: {
     students: null,
@@ -9,7 +9,7 @@ export default createStore({
     book:null,
     message:null,
     showSpinner: true,
-    loggedUser:null,
+   
       },
   getters: {
     showSpinner(state) {
@@ -41,7 +41,7 @@ export default createStore({
 },
   actions: {
     async fetchStudents(context){
-      const res = await axios.get(`${'https://second-handy.onrender.com/'}students`);
+      const res = await axios.get(`${secondURL}students`);
       const {results, err} = await res.data;
       if(results) {
         context.commit('setStudents', results)
@@ -50,7 +50,7 @@ export default createStore({
     }
   },
     async fetchBooks(context){
-      const res = await axios.get(`${'https://second-handy.onrender.com/'}books`);
+      const res = await axios.get(`${secondURL}books`);
       const {results, err} = await res.data;
       if(results) {
         context.commit('setBooks', results)
@@ -69,16 +69,16 @@ export default createStore({
       context.commit('setMessage', err);
     }
   },
-      async signIn(context,payload){
-      const result = await axios.post(`${'https://second-handy.onrender.com/'}signIn`, payload);
-      const {res, msg, err} = await result.data;
-      if(res) {
-        context.commit('setLoggedUser', res);
-        console.log(res);
-        context.commit('setMessage', msg);
+  async signIn(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
     }else {
       context.commit('setMessage', err);
-      console.log(err);
     }
   },
 },
