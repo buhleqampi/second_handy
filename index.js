@@ -7,20 +7,27 @@ const {errorHandling} = require('./middleware/ErrorHandling');
 const cookieParser = require('cookie-parser');
 
 app.use((req, res, next)=> {
-        res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
+        res.header('Access-Control-Allow-Origin', 'https://localhost:8080');
         res.header("Access-Control-Allow-Credentials", "true")
         res.header("Access-Control-Allow-Methods", "*")
         res.header("Access-Control-Allow-Headers", "*")
         next();
 });
-app.use(route);
+
+// cookieParser & Router
+// cookieParser should be set before router
 app.use(
-    cors(),
     cookieParser(),
+    cors(),
+    router
+    );
+    app.use(
     express.json(),
-    express.urlencoded({extended: false}),
+    express.urlencoded({extended: true}),
 );
 
+
+// Server
 app.listen(port, ()=> {
     console.log(`Server is running on port ${port}`)
 });
