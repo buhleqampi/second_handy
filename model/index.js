@@ -11,7 +11,7 @@ class Student {
         `
         SELECT studentID, firstName, lastName, institutionName, studentNumber, gender, userPass, userRole, userProfile, emailAdd
         FROM Students
-         WHERE emailAdd = '${emailAdd}';
+        WHERE emailAdd = '${emailAdd}';
         `
         db.query(strQry, async (err, data) => {
             if(err) throw err;
@@ -125,9 +125,9 @@ class Student {
     }
     updateStudent(req, res) {
         let data = req.body;
-        if(data.userPass !== null || 
-            data.userPass !== undefined)
+        if(data.userPass !== null || data.userPass !== undefined){
             data.userPass = hashSync(data.userPass, 15);
+        }
         const strQry = 
         `
         UPDATE Students
@@ -156,134 +156,135 @@ class Student {
                 "A record was removed from a database"} );
         })    
     }
+}
+class Book {
+fetchBooks(req, res) {
+    const strQry = `SELECT id, bookName, bookDescription, price,category, bookQuantity, imgURL
+    FROM Books;`;
+    db.query(strQry, (err, results)=> {
+        if(err) throw err;
+        res.status(200).json({results: results})
+    });
+}
+fetchBook(req, res) {
+    const strQry = `SELECT id, bookName, bookDescription, price, category, bookQuantity, imgURL
+    FROM Books
+    WHERE id = ?;`;
+    db.query(strQry, [req.params.id], (err, results)=> {
+        if(err) throw err;
+        res.status(200).json({results: results})
+    });
+}
+addBook(req, res) {
+    const strQry = 
+    `
+    INSERT INTO Books
+    SET ?;
+    `;
+    db.query(strQry,[req.body],(err,results)=> {
+            if(err){
+                res.status(400).json({err: "Unable to insert a new book.",results});
+            }else {
+                res.status(300).json({msg: "Book saved"});
+            }
+        }
+    );   
+}
+updateBook(req, res) {
+    const strQry = 
+    `
+    UPDATE Books
+    SET ?
+    WHERE id = ?
+    `;
+    db.query(strQry,[req.body, req.params.id],
+        (err)=> {
+            if(err){
+                res.status(400).json({err: "Unable to update a book record."});
+            }else {
+                res.status(200).json({msg: "Book updated"});
+            }
+        }
+    );    
+}
+deleteBook(req, res) {
+    const strQry = 
+    `
+    DELETE FROM Books
+    WHERE id = ?;
+    `;
+    db.query(strQry,[req.params.id], (err)=> {
+        if(err) res.status(400).json({err: "The book cannot be deleted."});
+        res.status(200).json({msg: "A book was deleted."});
+    })
+}
+}
+class Cart {
+    fetchCartBooks(req, res) {
+        const strQry = `SELECT cartID, studentID, id, price
+        FROM Cart;`;
+        db.query(strQry, (err, results)=> {
+            if(err) throw err;
+            res.status(200).json({results: results})
+        });
     }
-            class Book {
-            fetchBooks(req, res) {
-                const strQry = `SELECT id, bookName, bookDescription, price,category, bookQuantity, imgURL
-                FROM Books;`;
-                db.query(strQry, (err, results)=> {
-                    if(err) throw err;
-                    res.status(200).json({results: results})
-                });
+    fetchCart(req, res) {
+        const strQry = `SELECT cartId, studentID, id, price
+        FROM Cart
+        WHERE cartID = ?;`;
+        db.query(strQry, [req.params.id], (err, results)=> {
+            if(err) throw err;
+            res.status(200).json({results: results})
+        });
+    }
+    addToCart(req, res) {
+        const strQry = 
+        `
+        INSERT INTO Cart
+        SET ?;
+        `;
+        db.query(strQry,[req.body],
+            (err)=> {
+                if(err){
+                    res.status(400).json({err: "Unable to insert a new donor."});
+                }else {
+                    res.status(200).json({msg: "Donor saved"});
+                }
             }
-            fetchBook(req, res) {
-                const strQry = `SELECT id, bookName, bookDescription, price, category, bookQuantity, imgURL
-                FROM Books
-                WHERE id = ?;`;
-                db.query(strQry, [req.params.id], (err, results)=> {
-                    if(err) throw err;
-                    res.status(200).json({results: results})
-                });
+        );    
+    }
+    updateCart(req, res) {
+        const strQry = 
+        `
+        UPDATE Cart
+        SET ?
+        WHERE cartID = ?
+        `;
+        db.query(strQry,[req.body, req.params.id],
+            (err)=> {
+                if(err){
+                    res.status(400).json({err: "Unable to update a donor."});
+                }else {
+                    res.status(200).json({msg: "Donor updated"});
+                }
             }
-            addBook(req, res) {
-                const strQry = 
-                `
-                INSERT INTO Books
-                SET ?;
-                `;
-                db.query(strQry,[req.body],(err,results)=> {
-                        if(err){
-                            res.status(400).json({err: "Unable to insert a new book.",results});
-                        }else {
-                            res.status(300).json({msg: "Book saved"});
-                        }
-                    }
-                );   
-            }
-            updateBook(req, res) {
-                const strQry = 
-                `
-                UPDATE Books
-                SET ?
-                WHERE id = ?
-                `;
-                db.query(strQry,[req.body, req.params.id],
-                    (err)=> {
-                        if(err){
-                            res.status(400).json({err: "Unable to update a book record."});
-                        }else {
-                            res.status(200).json({msg: "Book updated"});
-                        }
-                    }
-                );    
-            }
-            deleteBook(req, res) {
-                const strQry = 
-                `
-                DELETE FROM Books
-                WHERE id = ?;
-                `;
-                db.query(strQry,[req.params.id], (err)=> {
-                    if(err) res.status(400).json({err: "The book cannot be deleted."});
-                    res.status(200).json({msg: "A book was deleted."});
-                })
-            }
-        }
-        class Cart {
-            fetchCartBooks(req, res) {
-                const strQry = `SELECT cartID, studentID, id, price
-                FROM Cart;`;
-                db.query(strQry, (err, results)=> {
-                    if(err) throw err;
-                    res.status(200).json({results: results})
-                });
-            }
-            fetchCart(req, res) {
-                const strQry = `SELECT cartId, studentID, id, price
-                FROM Cart
-                WHERE cartID = ?;`;
-                db.query(strQry, [req.params.id], (err, results)=> {
-                    if(err) throw err;
-                    res.status(200).json({results: results})
-                });
-            }
-            addToCart(req, res) {
-                const strQry = 
-                `
-                INSERT INTO Cart
-                SET ?;
-                `;
-                db.query(strQry,[req.body],
-                    (err)=> {
-                        if(err){
-                            res.status(400).json({err: "Unable to insert a new donor."});
-                        }else {
-                            res.status(200).json({msg: "Donor saved"});
-                        }
-                    }
-                );    
-            }
-            updateCart(req, res) {
-                const strQry = 
-                `
-                UPDATE Cart
-                SET ?
-                WHERE cartID = ?
-                `;
-                db.query(strQry,[req.body, req.params.id],
-                    (err)=> {
-                        if(err){
-                            res.status(400).json({err: "Unable to update a donor."});
-                        }else {
-                            res.status(200).json({msg: "Donor updated"});
-                        }
-                    }
-                );    
-            }
-            deleteCart(req, res) {
-                const strQry = 
-                `
-                DELETE FROM Cart
-                WHERE cartID = ?;
-                `;
-                db.query(strQry,[req.params.id], (err)=> {
-                    if(err) res.status(400).json({err: "The donor cannot be deleted."});
-                    res.status(200).json({msg: "A donor was deleted."});
-                })
-            }
-        }
-        module.exports = {
-            Student, 
-            Book, 
-            Cart
-        }
+        );    
+    }
+    deleteCart(req, res) {
+        const strQry = 
+        `
+        DELETE FROM Cart
+        WHERE cartID = ?;
+        `;
+        db.query(strQry,[req.params.id], (err)=> {
+            if(err) res.status(400).json({err: "The donor cannot be deleted."});
+            res.status(200).json({msg: "A donor was deleted."});
+        })
+    }
+}
+
+module.exports = {
+    Student, 
+    Book, 
+    Cart
+}
