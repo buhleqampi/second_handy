@@ -11,8 +11,9 @@
                     <input type="password" required v-model="payload.userPass">
                     <span class="user">Password</span>
                 </div>
+                <button type="submit" class="btn btn-dark">Submit</button>
                 <LogoutComp/>
-                <button type="submit" class="submit">SUBMIT</button>
+                <ForgotPasswordComp/>
             </form>
             </div>
         </div>
@@ -20,6 +21,7 @@
 
     <script>
 import LogoutComp from '@/components/LogoutComp.vue';
+import ForgotPasswordComp from '@/components/ForgotPassword.vue';
 
         export default {
     data() {
@@ -42,7 +44,7 @@ import LogoutComp from '@/components/LogoutComp.vue';
             //    localStorage.setItem('token', jwToken);
         }
     },
-    components: { LogoutComp }
+    components: { LogoutComp, ForgotPasswordComp }
 }
     </script>
 

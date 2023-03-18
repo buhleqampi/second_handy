@@ -48,6 +48,15 @@ export default createStore({
       context.commit('setMessage', err)
     }
   },
+    async fetchStudent(context){
+      const res = await axios.get(`${secondURL}student`);
+      const {results, err} = await res.data;
+      if(results) {
+        context.commit('setStudent', results)
+    }else {
+      context.commit('setMessage', err)
+    }
+  },
     async fetchBooks(context){
       const res = await axios.get(`${secondURL}books`);
       const {results, err} = await res.data;
@@ -57,12 +66,22 @@ export default createStore({
       context.commit('setMessage', err)
     }
   },
+    async fetchBook(context, id){
+      const res = await axios.get(`${secondURL}book/${id}`);
+      console.log(id);
+      const {result, err} = await res.data;
+      if(result) {
+        context.commit('setBook', result[0])
+    }else {
+      context.commit('setMessage', err)
+    }
+  },
   async signUp(context, payload){
-    console.log("its working?");
+    // console.log("its working?");
     const res = await axios.post(`${secondURL}signUp`, payload);
     const {result, err} = await res.data;
     if (result, err) {
-      console.log(result);
+      // console.log(result);
       context.commit('setMessage', result);
     }else {
       context.commit('setMessage', err);
@@ -72,7 +91,67 @@ export default createStore({
   
     const res = await axios.post(`${secondURL}signIn`, payload);
     const {result, msg, err} = await res.data;
-    console.log(res.data);
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async updateStudent(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async deleteStudent(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async addBook(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async updateBook(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async deleteBook(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
     if(result) {
       context.commit('setStudent', result);
       context.commit('setMessage', msg);

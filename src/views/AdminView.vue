@@ -35,7 +35,7 @@
                     </table>
                     </div>
                 
-                    <div class="container-fluid">
+                    <div class="col m-4">
                     <div class="row">
                         <h1>Products</h1>
                     </div>
