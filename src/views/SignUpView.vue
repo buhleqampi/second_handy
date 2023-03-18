@@ -100,6 +100,9 @@ export default {
             };
             this.$store.dispatch("signUp", data);
         }
+        },
+        mounted(){
+            this.$store.dispatch("signUp");
         }
     };
 </script>

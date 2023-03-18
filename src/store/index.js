@@ -13,7 +13,11 @@ export default createStore({
   getters: {
     showSpinner(state) {
       return state.showSpinner
-    }
+    },
+    fetchUsers:(state) => state.fetchUsers,
+    fetchUser:(state) => state.fetchUser,
+    fetchBooks:(state) => state.book,
+    fetchBook:(state) => state.book
   },
   mutations: {
     setStudents(state, values){
@@ -68,10 +72,9 @@ export default createStore({
   },
     async fetchBook(context, id){
       const res = await axios.get(`${secondURL}book/${id}`);
-      console.log(id);
-      const {result, err} = await res.data;
-      if(result) {
-        context.commit('setBook', result[0])
+      const {results, err} = await res.data;
+      if(results) {
+        context.commit('setBook', results[0])
     }else {
       context.commit('setMessage', err)
     }
