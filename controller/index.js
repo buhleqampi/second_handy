@@ -23,7 +23,7 @@ route.get('/student/:id', (req,res)=> {
 route.get('/books', (req,res)=> {
     book.fetchBooks(req, res);
 })
-route.get('/book: id', (req,res)=> {
+route.get('/book/:id', (req,res)=> {
     book.fetchBook(req, res);
 })
 route.get('/cartbooks', (req,res)=> {
