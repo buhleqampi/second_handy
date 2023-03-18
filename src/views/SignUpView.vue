@@ -60,8 +60,6 @@
 </template>
     
 <script>
-// import { computed } from '@vue/runtime-core';
-// import { useStore } from 'vuex';
 export default {
     data() {
         return {

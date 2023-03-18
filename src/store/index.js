@@ -9,7 +9,6 @@ export default createStore({
     book:null,
     message:null,
     showSpinner: true,
-   
       },
   getters: {
     showSpinner(state) {

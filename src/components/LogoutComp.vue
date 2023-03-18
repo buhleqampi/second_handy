@@ -1,6 +1,6 @@
 <template >
     <div>
-     <button class="btn btn-dark" @click="logout">Logout</button>
+    <button class="btn btn-dark" @click="logout">Logout</button>
     </div>
 </template>
 <script>
@@ -10,8 +10,7 @@ export default {
       localStorage.removeItem('user'); // remove the 'user' key from local storage
       // any other cleanup or redirect code can go here
     }
-  }
-    
+}
 }
 </script>
 <style >
