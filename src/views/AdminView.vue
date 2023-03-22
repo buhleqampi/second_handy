@@ -70,27 +70,32 @@
         </div>
     </template>
     <script>
-    import {computed} from '@vue/runtime-core';
-    import {useStore} from 'vuex';
-    // import SpinnerComponent from '../components/SpinnerComponent.vue';
+    // import {computed} from '@vue/runtime-core';
+    // import {useStore} from 'vuex';
+    // // import SpinnerComponent from '../components/SpinnerComponent.vue';
+    // export default {
+    //     // components: {
+    //     //     SpinnerComponent
+    //     // },
+    //     setup() {
+    //         const store = useStore();
+    //         store.dispatch("fetchStudents");
+    //         store.dispatch("fetchBooks");
+    //         const students =
+    //         computed( ()=>store.state.students);
+    //         const books =
+    //         computed( ()=> store.state.books);
+    //         // const spinner = computed (()=> store.state.showSpinner);
+    //         return {
+    //             students,
+    //             books,
+    //             // spinner
+    //         }
+    //     }
+    // }
     export default {
-        // components: {
-        //     SpinnerComponent
-        // },
-        setup() {
-            const store = useStore();
-            store.dispatch("fetchStudents");
-            store.dispatch("fetchBooks");
-            const students =
-            computed( ()=>store.state.students);
-            const books =
-            computed( ()=> store.state.books);
-            // const spinner = computed (()=> store.state.showSpinner);
-            return {
-                students,
-                books,
-                // spinner
-            }
+        data() {
+            
         }
     }
     </script>

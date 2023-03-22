@@ -1,6 +1,8 @@
 import { createStore } from 'vuex'
+import { useCookies } from 'vue3-cookies';
 import axios from 'axios';
-const secondURL = 'https://second-handy-ecommerce.onrender.com/'
+const secondURL = 'http://localhost:5000/'
+const {cookies} = useCookies();
 export default createStore({
   state: {
     students: null,
@@ -9,6 +11,7 @@ export default createStore({
     book:null,
     message:null,
     showSpinner: true,
+    cart: null
       },
   getters: {
     showSpinner(state) {
@@ -80,24 +83,33 @@ export default createStore({
     }
   },
   async signUp(context, payload){
-    // console.log("its working?");
+    console.log("its working?");
     const res = await axios.post(`${secondURL}signUp`, payload);
+    console.log("3333");
     const {result, err} = await res.data;
-    if (result, err) {
-      // console.log(result);
+    if (result) {
+      console.log(result);
       context.commit('setMessage', result);
     }else {
       context.commit('setMessage', err);
     }
   },
-  async signIn(context,payload){
+  // async signUp(context, student) {
+  //   try {
+  //     const res = await axios.post('/students', student)
+  //     context.commit('setStudent', res.data)
+  //   } catch (error) {
+  //     context.commit('setMessage', error.message)
+  //   }
+  // },
+  async signIn(context,payload){ 
   
     const res = await axios.post(`${secondURL}signIn`, payload);
-    const {result, msg, err} = await res.data;
-    // console.log(res.data);
+    const {result,jwToken, msg, err} = await res.data;
     if(result) {
       context.commit('setStudent', result);
       context.commit('setMessage', msg);
+      cookies.set('registeredUser', jwToken)
     }else {
       context.commit('setMessage', err);
     }
@@ -162,6 +174,65 @@ export default createStore({
       context.commit('setMessage', err);
     }
   },
+  async fetchCartBooks(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async fetchCart(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async addToCart(context,payload){
+  
+    const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async updateCart  (context,payload){
+  const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+  async deleteCart  (context,payload){
+  const res = await axios.post(`${secondURL}signIn`, payload);
+    const {result, msg, err} = await res.data;
+    // console.log(res.data);
+    if(result) {
+      context.commit('setStudent', result);
+      context.commit('setMessage', msg);
+    }else {
+      context.commit('setMessage', err);
+    }
+  },
+
 },
   },
   );

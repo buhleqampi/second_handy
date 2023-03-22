@@ -1,6 +1,5 @@
 <template>
     <div class="card">
-
         <div class="card-header">
             <div class="text-header">Register</div>
         </div>
@@ -48,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label for="date">Registration Date:</label>
-                    <input required class="form-control" type="date" v-model="payload.joinDate">
+                    <input required class="form-control" type="date" v-model="payload.registrationDate">
                 </div>
                 <div class="form-group">
                     <p class="lead">{{ message }}</p>
@@ -57,55 +56,40 @@
             </form>
         </div>
     </div>
-</template>
-    
+    </template>
 <script>
 export default {
     data() {
         return {
             payload: {
-                firstName: '',
-                lastName: '',
-                institutionName: '',
-                studentNumber: '',
-                gender: '',
-                userPass: '',
-                userRole: '',
-                userProfile: '',
-                emailAdd: '',
-                cellphoneNumber: '',
-                registrationDate: ''
+                            firstName: '',
+                            lastName: '',
+                            institutionName: '',
+                            studentNumber: '',
+                            gender: '',
+                            cellphoneNumber: '',
+                            emailAdd: '',
+                            userPass: '',
+                            userRole: 'user',
+                            userProfile: 'https://i.postimg.cc/dVz34Bpr/Sakhe.jpg',
+                            registrationDate: ''
+                        }
+            };
+        },
+        computed: {
+            message() {
+                return this.$store.state.message
+            }
+        },
+        methods:{
+            signUp(){
+                this.$store.dispatch("signUp", this.payload)
             }
         }
-    },
-    computed: {
-        message() {
-            return this.$store.state.message
-        }
-    },
-    methods: {
-        signUp() {
-            let data = {
-                firstName: this.payload.firstName,
-                lastName: this.payload.lastName,
-                institutionName: this.payload.institutionName,
-                studentNumber: this.payload.studentNumber,
-                gender: this.payload.gender,
-                userPass: this.payload.userPass,
-                userRole: this.payload.userRole,
-                userProfile:this.payload.userProfile,
-                emailAdd: this.payload.emailAdd,
-                cellphoneNumber: this.payload.cellphoneNumber,
-                registrationDate: this.payload.registrationDate,
-            };
-            this.$store.dispatch("signUp", data);
-        }
-        },
-        mounted(){
-            this.$store.dispatch("signUp");
-        }
-    };
-</script>
+    }
+
+    </script>
+
     
 <style scoped>
 .card {
@@ -171,6 +155,5 @@ export default {
 .btn:hover {
     background-color: #ccc;
     color: #333;
-}
-</style>
+}</style>
     
