@@ -14,6 +14,7 @@
                     <form @submit.prevent="createStudent">
                         <input type="text" v-model="newStudent.firstName" placeholder="First name"/>
                         <button type="submit">Add Student</button>
+                        <router-link :to="{ name: 'student', params: {id: studentID.id} }"> Go to Profile </router-link>
                     <thead>
                         <th>First name</th>
                         <th>Last name</th>

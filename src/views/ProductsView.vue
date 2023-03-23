@@ -14,7 +14,7 @@
                         <h5 class="card-title">{{ book.bookName }}</h5>
                         <h5 class="card-title">{{ book.category }}</h5>
                         <h5 class="card-title">{{ book.price }}</h5>
-                        <router-link :to="{ name: 'product', params: {id: book.id} } "> View more </router-link>"
+                        <router-link :to="{ name: 'product', params: {id: book.id} }"> View more </router-link>
                     </div>
                 </div>
             </div>  
