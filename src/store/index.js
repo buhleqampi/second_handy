@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 import { useCookies } from 'vue3-cookies';
 import axios from 'axios';
-const secondURL = 'http://localhost:5000/'
+const secondURL = 'https://second-handy-ecommerce.onrender.com/'
 const {cookies} = useCookies();
 export default createStore({
   state: {

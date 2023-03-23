@@ -19,8 +19,17 @@
 </template>
 <script>
 export default {
-    
-}
+    data(){
+        return {
+            books: []
+        }
+    },
+    computed: {
+        totalPrice (){
+            return this.books.reduce((total, books) => total + books, 0 );
+        }
+        }
+    }
 </script>
 <style scoped>
 
