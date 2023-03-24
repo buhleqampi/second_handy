@@ -1,12 +1,14 @@
 <template>
-
+        <div>
+            <h2>Admin</h2>
+        </div>
         <div class="container">
                 <!-- <div v-if="spinner">
                     <SpinnerComponent/>
                 </div> -->
                 <!-- <div v-else class="container-fluid"> -->
             <div class="cover col m-4">
-                <h1>Students</h1>
+                <h3>Students</h3>
                 <button type="button" class="btn btn-success" id="bam">Add Student</button>
             </div>
             <div class="row" >
@@ -27,15 +29,15 @@
                         <td>{{ student.emailAdd }}</td>
                         <td>{{ student.userRole }}</td>
                         <td><img class="img-fluid" :src="student.userProfile" :alt="student.firstName" ></td>
-                        <td><button class="btn btn-primary">Edit</button></td>
-                        <td><button class="btn btn-primary">Delete</button></td>
+                        <td><button class="btn btn-success">Edit</button></td>
+                        <td><button class="btn btn-success">Delete</button></td>
                     </tr> 
                     </tbody>
                     </table>
                     </div>
                 
                     <div class="col m-4">
-                    <h1>Products</h1>
+                    <h3>Products</h3>
                     <button type="button" class="btn btn-success" id="bam">Add Book</button>
                     </div>
             <div class="row" >
@@ -56,8 +58,8 @@
                     <td>{{  book.price }}</td>
                     <td>{{  book.bookQuantity }}</td>
                     <td><img :src="book.imgURL" :alt="book.bookName" ></td>
-                    <td><button class="btn btn-primary">Edit</button></td>
-                    <td><button class="btn btn-primary">Delete</button></td>
+                    <td><button class="btn btn-success">Edit</button></td>
+                    <td><button class="btn btn-success">Delete</button></td>
                     </tr> 
                     </tbody>
                 </table>
@@ -107,5 +109,9 @@
         backdrop-filter: blur(9.9px);
         -webkit-backdrop-filter: blur(9.9px);
         border: 1px solid rgba(82, 78, 78, 0.26);
+    }
+    h2,h3 {
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin-top:10px;
     }
     </style>

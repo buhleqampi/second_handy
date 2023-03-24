@@ -1,6 +1,7 @@
 <template lang="">
     <div>
         <div class="row">
+            <h2>Single Products</h2>
             <div class="container-fluid">
                 <div class="row gy-3 gap-5 mx-3 d-sm-flex justify-content-center mt-5 text-white;">
                     <div class="card col-3" id="cart">
@@ -40,5 +41,9 @@ export default {
     backdrop-filter: blur(9.9px);
     -webkit-backdrop-filter: blur(9.9px);
     border: 1px solid rgba(82, 78, 78, 0.26);
+}
+h2{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top:10px;
 }
 </style>   

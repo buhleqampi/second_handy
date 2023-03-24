@@ -2,6 +2,7 @@
     <div>
         <div class="row">
             <div class="container-fluid">
+                <h2>Your Cart</h2>
                 <div class="row gy-3 gap-5 mx-3 d-sm-flex justify-content-center mt-5 text-white;">
                     <div class="card col-3" id="cart">
                     <img :src="cart?.imgURL" class="mx-auto d-block" style="width: 15rem; height: 15rem; padding-top: 20px;"/>
@@ -41,5 +42,9 @@ export default {
     backdrop-filter: blur(9.9px);
     -webkit-backdrop-filter: blur(9.9px);
     border: 1px solid rgba(82, 78, 78, 0.26);
+}
+h2 {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top:10px;
 }
 </style>

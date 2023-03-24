@@ -1,7 +1,7 @@
     <template>
         <div v-if="!loggedUser">
-        
         <div class="container">
+            <h2>Sign In</h2>
             <div class="card">
                 <form class="form" @submit.prevent="signIn">
                 <a class="signIn">Sign In</a>{{this.loggedUser?.firstName}}
@@ -148,10 +148,8 @@ import ForgotPasswordComp from '@/components/ForgotPassword.vue';
             color: white;
         }
 
-        .container {
-        display:flex;
-        justify-content: center;
-        align-items: center;
-
+        h2 {
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin-top:10px;
         }
 </style>

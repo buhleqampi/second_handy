@@ -1,4 +1,6 @@
 <template>
+    <div class="container">
+    <h2>Contact Us</h2>
         <div class="card">
             <span class="title">Leave a Comment</span>
             <form class="form">
@@ -17,7 +19,7 @@
             <button type="submit">Submit</button>
             </form>
         </div>
-        
+    </div>
 </template>
 <script>
 export default {
@@ -112,6 +114,9 @@ export default {
     .form button:hover {
         background-color: #27408b;
     }
-    
+    h2 {
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin-top:10px;
+    }
     
 </style>

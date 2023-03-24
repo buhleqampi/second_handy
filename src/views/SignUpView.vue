@@ -1,4 +1,6 @@
 <template>
+    <div class="container">
+        <h2>SignUp</h2>
     <div class="card">
         <div class="card-header">
             <div class="text-header">Register</div>
@@ -56,6 +58,7 @@
             </form>
         </div>
     </div>
+</div>
     </template>
 <script>
 export default {
@@ -158,5 +161,10 @@ export default {
 .btn:hover {
     background-color: #ccc;
     color: #333;
-}</style>
+}
+h2 {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top:10px;
+}
+</style>
     

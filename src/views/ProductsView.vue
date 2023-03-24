@@ -65,6 +65,7 @@ export default {
 }
 .sorting {
     background-color: green;
+    border-radius:10px;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -73,5 +74,10 @@ export default {
     display: inline-block;
     font-size: 16px;
     width: 250px;
+    margin-left:20px;
 }
-</style>
+h2 {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top:10px;
+}
+</style> 
