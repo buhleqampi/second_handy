@@ -54,10 +54,6 @@ route.post('/student/:id/cart', bodyParser.json(), (req, res)=> {
 route.post('/book', bodyParser.json(), (req,res)=> {
     book.addBook(req, res);
 });
-// Putting a product into a cart
-route.post('/cart', bodyParser.json(), (req, res)=> {
-    cart.addToCart(req, res);
-});
 
 // PUT
 route.put('/student/:id', bodyParser.json(), (req, res)=> {
@@ -84,6 +80,8 @@ route.delete('/book/:id', bodyParser.json, (req,res)=>{
 route.delete('/student/:id/cart', bodyParser.json, (req,res)=>{
     cart.deleteCart(req, res);
 })
+
+// Deleting a specific book in the cart
 route.delete('/student/:id/cart/:id', bodyParser.json, (req,res)=>{
     cart.deleteCart(req, res);
 })
