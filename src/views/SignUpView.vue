@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h2>SignUp</h2>
+        <div class="row gy-3 gap-5 mx-3 d-sm-flex justify-content-center mt-5">
     <div class="card">
         <div class="card-header">
             <div class="text-header">Register</div>
@@ -59,6 +60,7 @@
         </div>
     </div>
 </div>
+</div>
     </template>
 <script>
 export default {
@@ -102,6 +104,7 @@ export default {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin: 10px;
+    grid-template-columns: repeat(6,20px);
 }
 
 .card-header {

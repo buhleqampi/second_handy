@@ -32,10 +32,19 @@ img {
 .about {
   display: flex;
   margin: 80px;
+  font-weight: 100px;
 }
 
 h2 {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   margin-top: 10px;
+}
+p{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom:20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.9px);
+  -webkit-backdrop-filter: blur(9.9px);
+  margin-top: 60px;
 }
 </style>

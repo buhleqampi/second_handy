@@ -1,9 +1,10 @@
 <template>
     <div class="container">
     <h2>Contact Us</h2>
+    <div class="row gy-3 gap-5 mx-3 d-sm-flex justify-content-center mt-5">
         <div class="card">
-            <span class="title">Leave a Comment</span>
-            <form class="form">
+            <span class="title text-black">Leave a Comment</span>
+            <form class="form" action="https://formspree.io/f/xyyadbno" method="POST">
             <div class="group">
             <input type="text" required="">
             <label for="name">Name</label>
@@ -19,6 +20,7 @@
             <button type="submit">Submit</button>
             </form>
         </div>
+    </div>
     </div>
 </template>
 <script>

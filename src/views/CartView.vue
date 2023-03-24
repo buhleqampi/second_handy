@@ -11,6 +11,7 @@
                         <h5 class="card-title">{{ cart?.studentID }}</h5>
                         <h5 class="card-title">{{ cart?.id }}</h5>
                         <h5 class="card-title">{{ cart?.price }}</h5>
+                        <h5 class="card-title">{{ cart?.totalPrice }}</h5>
                         <button type="button" class="btn btn-primary">Buy</button>
                     </div>
                 </div>

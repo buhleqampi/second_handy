@@ -42,7 +42,7 @@
                     </li>
                     </ul>
                     <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input type="text" v-model="search" class="form-control" placeholder="Search by name" aria-label="Search" id="exampleFormControlInput1">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>

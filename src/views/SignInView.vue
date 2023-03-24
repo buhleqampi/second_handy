@@ -2,7 +2,8 @@
         <div v-if="!loggedUser">
         <div class="container">
             <h2>Sign In</h2>
-            <div class="card justify-content-center">
+            <div class="row gy-3 gap-5 mx-3 d-sm-flex justify-content-center mt-5">
+            <div class="card">
                 <form class="form" @submit.prevent="signIn">
                 <a class="signIn">Sign In</a>{{this.loggedUser?.firstName}}
                 <div class="input">
@@ -18,6 +19,7 @@
                 <ForgotPasswordComp/>
             </form>
             </div>
+        </div>
         </div>
     </div>
     <div v-else><h1>Welcome {{loggedUser.firstName }} {{loggedUser.lastName }}</h1>
