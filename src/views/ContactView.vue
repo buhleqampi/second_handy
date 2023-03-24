@@ -1,28 +1,117 @@
-<template lang="">
-    <div>
-            <form>
-                <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+<template>
+        <div class="card">
+            <span class="title">Leave a Comment</span>
+            <form class="form">
+            <div class="group">
+            <input type="text" required="">
+            <label for="name">Name</label>
+            </div>
+        <div class="group">
+            <input type="email" id="email" name="email" required="">
+            <label for="email">Email</label>
+            </div>
+        <div class="group">
+            <textarea id="comment" name="comment" rows="5" required=""></textarea>
+            <label for="comment">Comment</label>
+        </div>
+            <button type="submit">Submit</button>
             </form>
         </div>
+        
 </template>
 <script>
 export default {
     
 }
 </script>
-<style lang="">
+<style scoped>
+    .card {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .title {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .group {
+        position: relative;
+    }
+    
+    .form .group label {
+        font-size: 14px;
+        color: rgb(99, 102, 102);
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        background-color: #fff;
+        transition: all .3s ease;
+    }
+    
+    .form .group input,
+    .form .group textarea {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        outline: 0;
+        width: 100%;
+        background-color: transparent;
+    }
+    
+    .form .group input:placeholder-shown+ label, .form .group textarea:placeholder-shown +label {
+        top: 10px;
+        background-color: transparent;
+    }
+    
+    .form .group input:focus,
+    .form .group textarea:focus {
+        border-color: #3366cc;
+    }
+    
+    .form .group input:focus+ label, .form .group textarea:focus +label {
+        top: -10px;
+        left: 10px;
+        background-color: #fff;
+        color: #3366cc;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .form .group textarea {
+        resize: none;
+        height: 100px;
+    }
+    
+    .form button {
+        background-color: #3366cc;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .form button:hover {
+        background-color: #27408b;
+    }
+    
     
 </style>

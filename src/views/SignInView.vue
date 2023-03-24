@@ -1,4 +1,6 @@
     <template>
+        <div v-if="!loggedUser">
+        
         <div class="container">
             <div class="card">
                 <form class="form" @submit.prevent="signIn">
@@ -17,6 +19,9 @@
             </form>
             </div>
         </div>
+    </div>
+    <div v-else><h1>Welcome {{loggedUser.firstName }} {{loggedUser.lastName }}</h1>
+    </div>
     </template>
 
     <script>
@@ -42,6 +47,9 @@ import ForgotPasswordComp from '@/components/ForgotPassword.vue';
             this.$store.dispatch("signIn", this.payload);
             localStorage.setItem("user", JSON.stringify(this.$store.state.user));
             //    localStorage.setItem('token', jwToken);
+        },
+        log(){
+            alert("You are now logged in")
         }
     },
     components: { LogoutComp, ForgotPasswordComp }
@@ -58,9 +66,7 @@ import ForgotPasswordComp from '@/components/ForgotPassword.vue';
         font-size: x-large;
     }
         .card{
-            display:flex;
-            justify-content: center;
-            align-items: center;
+            margin-bottom: 80px;
             min-height: 350px;
             width: 300px;
             flex-direction: column;
@@ -140,5 +146,12 @@ import ForgotPasswordComp from '@/components/ForgotPassword.vue';
         .submit:hover {
             background-color: rgb(0, 0, 0);
             color: white;
+        }
+
+        .container {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+
         }
 </style>

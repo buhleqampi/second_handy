@@ -44,6 +44,15 @@ export default createStore({
   setLoggedUser(state, value) {
     state.loggedUser = value;
 },
+sortByPrice:(state)=>{
+  state.books.sort((a,b) => {
+    return a.price - b.price;
+  })
+  if(!state.asc){
+    state.books.reverse()
+  }
+  state.asc=!state.asc
+},
 },
   actions: {
     async fetchStudents(context){
@@ -232,6 +241,7 @@ export default createStore({
       context.commit('setMessage', err);
     }
   },
+  
 
 },
   },

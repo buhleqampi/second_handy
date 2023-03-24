@@ -38,7 +38,7 @@
                         <router-link to="/product">Single Product</router-link> 
                     </li>
                     <li class="nav-item">
-                        <router-link to="/profile"> Students' Profile</router-link> 
+                        <router-link to="/profile"><i class="fa-solid fa-user"></i> Students' Profile</router-link> 
                     </li>
                     </ul>
                     <form class="d-flex" role="search">
