@@ -5,16 +5,16 @@
     </div>
             <ul>
             <li>
-                <i class="fa-brands fa-github"></i>
+                <a href="https://github.com/" target="_blank"><i class="fa-brands fa-github"></i></a>
             </li>
             <li>
-                <i class="fa-brands fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/buhle-qampi-293140158/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
             </li>
             <li>
-                <i class="fa-brands fa-facebook"></i>
+                <a href="https://www.facebook.com/buhle.qampi/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
             </li>
             <li>
-                <i class="fa-brands fa-instagram"></i>
+                <a href="https://www.instagram.com/gingerqamps/"  target="_blank"><i class="fa-brands fa-instagram"></i></a>
             </li>
         </ul>
     </div>

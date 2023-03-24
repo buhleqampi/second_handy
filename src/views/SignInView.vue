@@ -2,7 +2,7 @@
         <div v-if="!loggedUser">
         <div class="container">
             <h2>Sign In</h2>
-            <div class="card">
+            <div class="card justify-content-center">
                 <form class="form" @submit.prevent="signIn">
                 <a class="signIn">Sign In</a>{{this.loggedUser?.firstName}}
                 <div class="input">

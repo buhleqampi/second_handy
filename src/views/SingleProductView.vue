@@ -1,10 +1,10 @@
 <template lang="">
     <div>
         <div class="row">
-            <h2>Single Products</h2>
+            <h2>Single Product </h2>
             <div class="container-fluid">
-                <div class="row gy-3 gap-5 mx-3 d-sm-flex justify-content-center mt-5 text-white;">
-                    <div class="card col-3" id="cart">
+                <div class="row gy-3 gap-5 mx-3  justify-content-center mt-5 text-white;">
+                    <div class="card col-3 d-sm-flex" id="cart">
                     <img :src="book?.imgURL" class="mx-auto d-block" style="width: 15rem; height: 15rem; padding-top: 20px;"/>
                     <div class="card-body text-white" style="width:auto">
                         <h5 class="card-title">{{ book?.bookName }}</h5>
