@@ -221,15 +221,19 @@ deleteBook(req, res) {
 }
 class Cart {
     fetchCartBooks(req, res) {
-        const strQry = `SELECT cartID, studentID, id, price
-        FROM Cart;`;
+        const strQry = `
+        SELECT cartID, studentID, id, price, totalPrice
+        FROM Cart 
+        INNER JOIN Books
+        ON Cart.id = Books.id
+        WHERE cartID=id;;`;
         db.query(strQry, (err, results)=> {
             if(err) throw err;
             res.status(200).json({results: results})
         });
     }
     fetchCart(req, res) {
-        const strQry = `SELECT cartId, studentID, id, price
+        const strQry = `SELECT cartId, studentID, id, price, totalPrice
         FROM Cart
         WHERE cartID = ?;`;
         db.query(strQry, [req.params.id], (err, results)=> {
@@ -246,9 +250,9 @@ class Cart {
         db.query(strQry,[req.body],
             (err)=> {
                 if(err){
-                    res.status(400).json({err: "Unable to insert a new donor."});
+                    res.status(400).json({err: "Unable to insert a new cart."});
                 }else {
-                    res.status(200).json({msg: "Donor saved"});
+                    res.status(200).json({msg: "Cart saved"});
                 }
             }
         );    
@@ -263,9 +267,9 @@ class Cart {
         db.query(strQry,[req.body, req.params.id],
             (err)=> {
                 if(err){
-                    res.status(400).json({err: "Unable to update a donor."});
+                    res.status(400).json({err: "Unable to update a cart."});
                 }else {
-                    res.status(200).json({msg: "Donor updated"});
+                    res.status(200).json({msg: "Cart updated"});
                 }
             }
         );    
@@ -277,8 +281,8 @@ class Cart {
         WHERE cartID = ?;
         `;
         db.query(strQry,[req.params.id], (err)=> {
-            if(err) res.status(400).json({err: "The donor cannot be deleted."});
-            res.status(200).json({msg: "A donor was deleted."});
+            if(err) res.status(400).json({err: "The cart cannot be deleted."});
+            res.status(200).json({msg: "A cart was deleted."});
         })
     }
 }
