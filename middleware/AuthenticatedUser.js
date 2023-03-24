@@ -20,7 +20,7 @@ function verifyToken(req, res, next) {
         "Please sign up" ;
         const isValid = null;
         if(token !== "Please sign up"){
-            isValid = verify(token, process.env.SECRET_KEY)
+            isValid = verify(token, process.env.SECRET_KEY) 
             if(isValid) {
                 req.authenticated = true;
                 next();
