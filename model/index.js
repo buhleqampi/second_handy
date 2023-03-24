@@ -226,7 +226,7 @@ class Cart {
         FROM Cart 
         INNER JOIN Books
         ON Cart.id = Books.id
-        WHERE cartID=id;;`;
+        WHERE cartID=studentID${req.params.id};`;
         db.query(strQry, (err, results)=> {
             if(err) throw err;
             res.status(200).json({results: results})
