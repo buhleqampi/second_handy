@@ -1,118 +1,122 @@
 <template>
-        <div>
-            <h2>Admin</h2>
-        </div>
-            <div class="cover col m-4">
-                <h3>Students</h3>
-                <button type="button" class="btn btn-success" id="bam">Add Student</button>
-                </div>
-            <div class="row" >
-                <table class="table text-white">
-                    <thead>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Email</th>
-                        <th>User Role</th>
-                        <th>User profile</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </thead>
-                    <tbody>
-                    <tr v-for="student in students"  :key="student.studentID">
-                        <td>{{  student.firstName }}</td>
-                        <td>{{ student.lastName }}</td>
-                        <td>{{ student.emailAdd }}</td>
-                        <td>{{ student.userRole }}</td>
-                        <td><img class="img-fluid" :src="student.userProfile" :alt="student.firstName" ></td>
-                        <td><button class="btn btn-success">Edit</button></td>
-                        <td><button class="btn btn-success">Delete</button></td>
-                    </tr> 
-                    </tbody>
-                    </table>
-                    </div>
-                
-                    <div class="col m-4">
-                    <h3>Products</h3>
-                    <AddBook/>
-                    <button type="button" class="btn btn-success" id="bam">Add Book</button>
-                </div>
-            <div class="row" >
-                <table class="table text-white">
-                    <thead>
-                        <th>book Name</th>
-                        <th>book Description</th>
-                        <th>Price</th>
-                        <th>book Quantity</th>
-                        <th>book image</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </thead>
-                    <tbody>
-                        <tr v-for="book in books"  :key="book.id">
-                    <td>{{  book.bookName }}</td>
-                    <td>{{  book.bookDescription }}</td>
-                    <td>{{  book.price }}</td>
-                    <td>{{  book.category }}</td>
-                    <td><img :src="book.imgURL" :alt="book.bookName" ></td>
+    <div>
+        <h2>Admin</h2>
+    </div>
+    <div class="cover col m-4">
+        <h3>Students</h3>
+        <button type="button" class="btn btn-success" id="bam">Add Student</button>
+    </div>
+    <div class="row bg-gradient">
+        <table class="table text-white">
+            <thead>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>User Role</th>
+                <th>User profile</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <tr v-for="student in students" :key="student.studentID">
+                    <td>{{ student.firstName }}</td>
+                    <td>{{ student.lastName }}</td>
+                    <td>{{ student.emailAdd }}</td>
+                    <td>{{ student.userRole }}</td>
+                    <td><img class="img-fluid" :src="student.userProfile" :alt="student.firstName"></td>
+                    <td><button class="btn btn-success">Edit</button></td>
+                    <td><button class="btn btn-success">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col m-4">
+        <h3>Products</h3>
+        <AddBook />
+        <button type="button" class="btn btn-success" id="bam">Add Book</button>
+    </div>
+    <div class="row">
+        <table class="table text-white">
+            <thead>
+                <th>book Name</th>
+                <th>book Description</th>
+                <th>Price</th>
+                <th>book Quantity</th>
+                <th>book image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                <tr v-for="book in books" :key="book.id">
+                    <td>{{ book.bookName }}</td>
+                    <td>{{ book.bookDescription }}</td>
+                    <td>{{ book.price }}</td>
+                    <td>{{ book.category }}</td>
+                    <td><img :src="book.imgURL" :alt="book.bookName"></td>
                     <td><button class="btn btn-success">Edit</button></td>
                     <td><button class="btn btn-success" @click="deleteBook(id)">Delete</button></td>
-                    </tr> 
-                    </tbody>
-                </table>
-            </div>
-    </template>
-    <script>
-    import {computed} from '@vue/runtime-core';
-    import {useStore} from 'vuex';
-    import AddBook from '../components/AddBook.vue';
-    export default {
-        components: {
-            AddBook
-        },
-        setup() {
-            const store = useStore();
-            store.dispatch("fetchStudents");
-            store.dispatch("fetchBooks");
-            const students =
-            computed( ()=>store.state.students);
-            const books =
-            computed( ()=> store.state.books);
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+<script>
+import { computed } from '@vue/runtime-core';
+import { useStore } from 'vuex';
+import AddBook from '../components/AddBook.vue';
+export default {
+    components: {
+        AddBook
+    },
+    setup() {
+        const store = useStore();
+        store.dispatch("fetchStudents");
+        store.dispatch("fetchBooks");
+        const students =
+            computed(() => store.state.students);
+        const books =
+            computed(() => store.state.books);
 
-            const addBook = (payload) => {
-                store.dispatch("addBook", payload);
-            }
-            return {
-                students,
-                books,
-                addBook
-            }
-        },
-        methods: {
-            deleteBook(id) {
-                this.store.dispatch("deleteBook", id)
-            }
+        const addBook = (payload) => {
+            store.dispatch("addBook", payload);
+        }
+        return {
+            students,
+            books,
+            addBook
+        }
+    },
+    methods: {
+        deleteBook(id) {
+            this.store.dispatch("deleteBook", id)
+        }
     }
-    }
-    </script>
-    <style scoped>
-    .table img{
-        height: 130px;
-    }
-    #bam {
-        margin-bottom: 5px;
-        width: 250px;
-    }
-    .container{
-        background-color: gray;
-        background: rgba(82, 78, 78, 0.5);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(9.9px);
-        -webkit-backdrop-filter: blur(9.9px);
-        border: 1px solid rgba(82, 78, 78, 0.26);
-    }
-    h2,h3 {
-        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        margin-top:10px;
-    }
-    </style>
+}
+</script>
+<style scoped>
+.table img {
+    height: 130px;
+}
+
+#bam {
+    margin-bottom: 5px;
+    width: 250px;
+}
+
+.container {
+    background-color: gray;
+    background: rgba(82, 78, 78, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.9px);
+    -webkit-backdrop-filter: blur(9.9px);
+    border: 1px solid rgba(82, 78, 78, 0.26);
+}
+
+h2,
+h3 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 10px;
+}
+</style>
