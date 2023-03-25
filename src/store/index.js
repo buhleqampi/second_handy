@@ -11,16 +11,19 @@ export default createStore({
     book:null,
     message:null,
     showSpinner: true,
-    cart: null
+    carts: null,
+    cart:null
       },
   getters: {
+
     showSpinner(state) {
       return state.showSpinner
     },
     fetchUsers:(state) => state.fetchUsers,
     fetchUser:(state) => state.fetchUser,
     fetchBooks:(state) => state.book,
-    fetchBook:(state) => state.book
+    fetchBook:(state) => state.book,
+
   },
   mutations: {
     setStudents(state, values){
@@ -44,6 +47,13 @@ export default createStore({
   setLoggedUser(state, value) {
     state.loggedUser = value;
 },
+  setCarts(state, values) {
+    state.carts = values;
+},
+  setCart(state, value) {
+    state.cart = value;
+},
+
 sortByPrice:(state)=>{
   state.books.sort((a,b) => {
     return a.price - b.price;
@@ -103,14 +113,6 @@ sortByPrice:(state)=>{
       context.commit('setMessage', err);
     }
   },
-  // async signUp(context, student) {
-  //   try {
-  //     const res = await axios.post('/students', student)
-  //     context.commit('setStudent', res.data)
-  //   } catch (error) {
-  //     context.commit('setMessage', error.message)
-  //   }
-  // },
   async signIn(context,payload){ 
   
     const res = await axios.post(`${secondURL}signIn`, payload);
@@ -183,66 +185,58 @@ sortByPrice:(state)=>{
       context.commit('setMessage', err);
     }
   },
-  async fetchCartBooks(context,payload){
-  
-    const res = await axios.post(`${secondURL}signIn`, payload);
-    const {result, msg, err} = await res.data;
-    // console.log(res.data);
-    if(result) {
-      context.commit('setStudent', result);
-      context.commit('setMessage', msg);
-    }else {
-      context.commit('setMessage', err);
+  async fetchCartBooks(context){
+    let mainStudent = JSON.parse(localStorage.fetchStudent('student'));
+    const res = await axios.get(`${secondURL}student/${mainStudent?.studentID}/carts`);
+    const {results} = await res.data;
+    if(results) {
+      console.log("cart - results: " , results);
+      context.commit('setCarts', results);
     }
   },
   async fetchCart(context,payload){
   
-    const res = await axios.post(`${secondURL}signIn`, payload);
-    const {result, msg, err} = await res.data;
-    // console.log(res.data);
-    if(result) {
-      context.commit('setStudent', result);
-      context.commit('setMessage', msg);
-    }else {
-      context.commit('setMessage', err);
+    const res = await axios.get(`${secondURL}student/${payload?.studentID}/cart`);
+    const {results} = await res.data;
+    console.log("Results from cart : ", results)
+    if(results) {
+      console.log(results)
+      context.commit('setCart', results);
     }
-  },
-  async addToCart(context,payload){
+    },
+    async addToCart(context,payload){
   
-    const res = await axios.post(`${secondURL}signIn`, payload);
-    const {result, msg, err} = await res.data;
-    // console.log(res.data);
-    if(result) {
-      context.commit('setStudent', result);
-      context.commit('setMessage', msg);
-    }else {
-      context.commit('setMessage', err);
-    }
+      const res = await axios.post(`${secondURL}student/${payload.studentID}/cart`, payload);
+      const { msg, err} = await res.data;
+      if(msg) {
+        context.commit('setCart', msg);
+        context.commit('setMessage', err);
+      }else {
+        context.commit('setMessage', err);
+      }
+    },
+    async updateCart  (context,payload){
+      console.log(payload);
+    const results = await axios.put(`${secondURL}student/${payload.id}/cart/${id}`, payload);
+    console.log(results);
+      const { msg, err} = await results.data;
+      if(results) {
+        context.commit('setCart', msg);
+          }else {
+        context.commit('setMessage', err);
+      }
+    },
+    async deleteCart  (context){
+      let mainStudent = JSON.parse(localStorage.fetchBook('student'));
+    const res = await axios.delete(`${secondURL}student/${mainStudent?.studentID}/cart`);
+      const { msg, err} = await res.data;
+      if(msg) {
+        console.log("delete - results:", msg);
+        context.commit('setCart', msg);
+      }else {
+        context.commit('setMessage', err);
+      }
+    },
   },
-  async updateCart  (context,payload){
-  const res = await axios.post(`${secondURL}signIn`, payload);
-    const {result, msg, err} = await res.data;
-    // console.log(res.data);
-    if(result) {
-      context.commit('setStudent', result);
-      context.commit('setMessage', msg);
-    }else {
-      context.commit('setMessage', err);
-    }
-  },
-  async deleteCart  (context,payload){
-  const res = await axios.post(`${secondURL}signIn`, payload);
-    const {result, msg, err} = await res.data;
-    // console.log(res.data);
-    if(result) {
-      context.commit('setStudent', result);
-      context.commit('setMessage', msg);
-    }else {
-      context.commit('setMessage', err);
-    }
-  },
-  
-
 },
-  },
   );

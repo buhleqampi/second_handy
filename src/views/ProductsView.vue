@@ -1,9 +1,9 @@
 <template>
     <div>
-        <!-- <div v-if="spinner">
-            <SpinnerComponent/>
+            <div v-if="spinner">
+                <SpinnerComponent/>        
         </div>
-        <div v-else class="container"> -->
+    <div v-else class="container px-5">
             <div v-if="books"></div>
             <form action="">
             <div class="mb-3">
@@ -11,6 +11,24 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
                 </div> 
             </form>
+            <div class="buttons">
+                <select v-model="screen" class="dropdown">
+                <option value="">All Category</option>
+                <option v-for="category in categories" :key="category">{{ category }}</option>
+                </select>
+                <div class="dropdown">
+                    <button @click="sorted" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Sort by Price
+                    </button>
+                </div>
+            <select v-model="screenColor" class="dropdown">
+                            <option value="">All Color</option>
+                            <option v-for="color in colors" :key="color">{{ color }}</option>
+                        </select>
+                    </div>
+                    <div class="container">
+                        <div v-for="book in searchFilter" :key="book.id">
                 <div class="row" style="height 50%;">
             <h2>Products</h2>
             <button @click="sortByPrice" class="sorting">Sort</button>
@@ -29,18 +47,20 @@
                 </div>
             </div>
         </div>
-        <!-- </div> -->
+        </div>
+    </div>
+    </div>
     </div>
 </template>
 
 <script>
 import { computed } from '@vue/runtime-core';
 import { useStore } from 'vuex';
-// import SpinnerComponent from "../components/SpinnerComponent.vue"
+import SpinnerComponent from "../components/SpinnerComponent.vue"
 export default {
-    // components: {
-    //     SpinnerComponent
-    // },
+    components: {
+        SpinnerComponent
+    },
     methods: {
         sortByPrice: function () {
             this.$store.commit("sortByPrice")
@@ -50,14 +70,13 @@ export default {
         const store = useStore();
         store.dispatch("fetchBooks");
         const books = computed(() => store.state.books);
-        // const spinner = computed (()=> store.state.showSpinner);
+        const spinner = computed (()=> store.state.showSpinner);
         return {
-            books
-            //     spinner
-            // };
+            books,
+                spinner
+            };
         }
     }
-}
 
 </script>
 <style scoped>

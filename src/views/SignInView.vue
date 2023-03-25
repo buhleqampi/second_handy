@@ -1,5 +1,5 @@
     <template>
-        <div v-if="!loggedUser">
+        <div v-if="loggedUser">
         <div class="container">
             <h2>Sign In</h2>
             <div class="row gy-3 gap-5 mx-3 d-sm-flex justify-content-center mt-5">
