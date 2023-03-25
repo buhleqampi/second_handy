@@ -7,7 +7,10 @@
             <div class="text-header">Register</div>
         </div>
         <div class="card-body">
+            <div class="container text-center">
+            <div class="row">
             <form class="form" @submit.prevent="signUp">
+                <div class="col">
                 <div class="form-group">
                     <label for="first name">First Name:</label>
                     <input required class="form-control" type="text" v-model="payload.firstName">
@@ -32,6 +35,8 @@
                     <label for="password">Password:</label>
                     <input required class="form-control" type="password" v-model="payload.userPass">
                 </div>
+            </div>
+            <div class="col">
                 <div class="form-group">
                     <label for="user">User Role:</label>
                     <input required class="form-control" type="text" v-model="payload.userRole">
@@ -56,7 +61,10 @@
                     <p class="lead">{{ message }}</p>
                 </div>
                 <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>
             </form>
+        </div>
+        </div>
         </div>
     </div>
 </div>
@@ -104,7 +112,6 @@ export default {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin: 10px;
-    grid-template-columns: repeat(6,20px);
 }
 
 .card-header {
@@ -117,13 +124,6 @@ export default {
     margin: 0;
     font-size: 18px;
     color: rgb(255, 255, 255);
-}
-
-.card-body {
-    padding: 16px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .form-group {
@@ -160,7 +160,6 @@ export default {
     transition: background-color 0.2s ease-in-out;
     cursor: pointer
 }
-
 .btn:hover {
     background-color: #ccc;
     color: #333;
@@ -169,5 +168,6 @@ h2 {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-top:10px;
 }
+
 </style>
     

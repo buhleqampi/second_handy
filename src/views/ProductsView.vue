@@ -4,7 +4,14 @@
             <SpinnerComponent/>
         </div>
         <div v-else class="container"> -->
-        <div class="row" style="height 50%;">
+            <div v-if="books"></div>
+            <form action="">
+            <div class="mb-3">
+                <input type="text" v-model="search" class="form-control" placeholder="Search by name" aria-label="Search" id="exampleFormControlInput1">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                </div> 
+            </form>
+                <div class="row" style="height 50%;">
             <h2>Products</h2>
             <button @click="sortByPrice" class="sorting">Sort</button>
             <div class="container-fluid">

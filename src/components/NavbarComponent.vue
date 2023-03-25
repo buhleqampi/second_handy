@@ -41,10 +41,6 @@
                         <router-link to="/profile"><i class="fa-solid fa-user"></i> </router-link> 
                     </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                    <input type="text" v-model="search" class="form-control" placeholder="Search by name" aria-label="Search" id="exampleFormControlInput1">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </div>
                 </div>
             </nav>
