@@ -1,9 +1,9 @@
 <template>
     <div>
-            <div v-if="spinner">
+            <!-- <div v-if="spinner">
                 <SpinnerComponent/>        
         </div>
-    <div v-else class="container px-5">
+    <div v-else class="container px-5"> -->
             <div v-if="books"></div>
             <form action="">
             <div class="mb-3">
@@ -49,18 +49,18 @@
         </div>
         </div>
     </div>
-    </div>
+    <!-- </div> -->
     </div>
 </template>
 
 <script>
 import { computed } from '@vue/runtime-core';
 import { useStore } from 'vuex';
-import SpinnerComponent from "../components/SpinnerComponent.vue"
+// import SpinnerComponent from "../components/SpinnerComponent.vue"
 export default {
-    components: {
-        SpinnerComponent
-    },
+    // components: {
+    //     SpinnerComponent
+    // },
     methods: {
         sortByPrice: function () {
             this.$store.commit("sortByPrice")

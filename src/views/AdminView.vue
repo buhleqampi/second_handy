@@ -2,12 +2,13 @@
     <div>
         <h2>Admin</h2>
     </div>
+    <div class="container">
     <div class="cover col m-4">
         <h3>Students</h3>
         <button type="button" class="btn btn-success" id="bam">Add Student</button>
     </div>
-    <div class="row bg-gradient">
-        <table class="table table-dark table-striped-columns">
+    <div class="row">
+        <table class="table text-white">
             <thead>
                 <th>First name</th>
                 <th>Last name</th>
@@ -33,11 +34,11 @@
 
     <div class="col m-4">
         <h3>Products</h3>
-        <AddBook />
+        <!-- <AddBook /> -->
         <button type="button" class="btn btn-success" id="bam">Add Book</button>
     </div>
     <div class="row">
-        <table class="table table-dark table-striped-columns text-white">
+        <table class="table text-white">
             <thead>
                 <th>book Name</th>
                 <th>book Description</th>
@@ -60,15 +61,16 @@
             </tbody>
         </table>
     </div>
+</div>
 </template>
 <script>
 import { computed } from '@vue/runtime-core';
 import { useStore } from 'vuex';
-import AddBook from '../components/AddBook.vue';
+// import AddBook from '../components/AddBook.vue';
 export default {
-    components: {
-        AddBook
-    },
+    // components: {
+    //     AddBook
+    // },
     setup() {
         const store = useStore();
         store.dispatch("fetchStudents");
