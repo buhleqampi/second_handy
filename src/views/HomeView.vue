@@ -16,13 +16,37 @@ h1{
   backdrop-filter: blur(9.9px);
   -webkit-backdrop-filter: blur(9.9px);
   margin-top: 200px;
+  animation: move 3s;
+  -webkit-animation: move 3s;
 
+}
+@keyframes move {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+            
+@-webkit-keyframes move {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 h3 {
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   backdrop-filter: blur(9.9px);
   -webkit-backdrop-filter: blur(9.9px);
-}
-  
+} 
 </style>
 

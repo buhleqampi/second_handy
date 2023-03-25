@@ -217,7 +217,7 @@ sortByPrice:(state)=>{
     },
     async updateCart  (context,payload){
       console.log(payload);
-    const results = await axios.put(`${secondURL}student/${payload.id}/cart/${id}`, payload);
+    const results = await axios.put(`${secondURL}student/${payload.id}/cart`, payload);
     console.log(results);
       const { msg, err} = await results.data;
       if(results) {
