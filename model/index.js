@@ -222,18 +222,18 @@ deleteBook(req, res) {
 class Cart {
     fetchCartBooks(req, res) {
         const strQry = `
-        SELECT cartID, studentID, id, price, totalPrice
+        SELECT studentID, imgURL, bookName, bookDescription, price
         FROM Cart 
         INNER JOIN Books
         ON Cart.id = Books.id
-        WHERE cartID=studentID${req.params.id};`;
+        WHERE Cart.studentID=${req.params.id};`;
         db.query(strQry, (err, results)=> {
             if(err) throw err;
             res.status(200).json({results: results})
         });
     }
     fetchCart(req, res) {
-        const strQry = `SELECT cartId, studentID, id, price, totalPrice
+        const strQry = `SELECT cartId, studentID, id
         FROM Cart
         WHERE cartID = ?;`;
         db.query(strQry, [req.params.id], (err, results)=> {
