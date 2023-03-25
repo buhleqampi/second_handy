@@ -7,7 +7,7 @@
         <button type="button" class="btn btn-success" id="bam">Add Student</button>
     </div>
     <div class="row bg-gradient">
-        <table class="table table table-dark table-striped-columns">
+        <table class="table table-dark table-striped-columns">
             <thead>
                 <th>First name</th>
                 <th>Last name</th>
@@ -37,7 +37,7 @@
         <button type="button" class="btn btn-success" id="bam">Add Book</button>
     </div>
     <div class="row">
-        <table class="table text-white">
+        <table class="table table-dark table-striped-columns text-white">
             <thead>
                 <th>book Name</th>
                 <th>book Description</th>
