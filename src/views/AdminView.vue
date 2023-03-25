@@ -2,15 +2,10 @@
         <div>
             <h2>Admin</h2>
         </div>
-        <div class="container">
-                <div v-if="spinner">
-                    <SpinnerComponent/>        
-            </div>
-        <div v-else class="container px-5">
             <div class="cover col m-4">
                 <h3>Students</h3>
                 <button type="button" class="btn btn-success" id="bam">Add Student</button>
-            </div>
+                </div>
             <div class="row" >
                 <table class="table text-white">
                     <thead>
@@ -38,8 +33,9 @@
                 
                     <div class="col m-4">
                     <h3>Products</h3>
+                    <AddBook/>
                     <button type="button" class="btn btn-success" id="bam">Add Book</button>
-                    </div>
+                </div>
             <div class="row" >
                 <table class="table text-white">
                     <thead>
@@ -56,25 +52,22 @@
                     <td>{{  book.bookName }}</td>
                     <td>{{  book.bookDescription }}</td>
                     <td>{{  book.price }}</td>
-                    <td>{{  book.bookQuantity }}</td>
+                    <td>{{  book.category }}</td>
                     <td><img :src="book.imgURL" :alt="book.bookName" ></td>
                     <td><button class="btn btn-success">Edit</button></td>
-                    <td><button class="btn btn-success">Delete</button></td>
+                    <td><button class="btn btn-success" @click="deleteBook(id)">Delete</button></td>
                     </tr> 
                     </tbody>
                 </table>
             </div>
-                </div>
-        </div>
     </template>
     <script>
     import {computed} from '@vue/runtime-core';
     import {useStore} from 'vuex';
-    import SpinnerComponent from '../components/SpinnerComponent.vue';
-
+    import AddBook from '../components/AddBook.vue';
     export default {
         components: {
-            SpinnerComponent
+            AddBook
         },
         setup() {
             const store = useStore();
@@ -84,15 +77,22 @@
             computed( ()=>store.state.students);
             const books =
             computed( ()=> store.state.books);
-            const spinner = computed (()=> store.state.showSpinner);
+
+            const addBook = (payload) => {
+                store.dispatch("addBook", payload);
+            }
             return {
                 students,
                 books,
-                spinner
+                addBook
             }
-        }
+        },
+        methods: {
+            deleteBook(id) {
+                this.store.dispatch("deleteBook", id)
+            }
     }
-
+    }
     </script>
     <style scoped>
     .table img{
