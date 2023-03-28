@@ -1,9 +1,9 @@
 <template>
-    <div>
-            <!-- <div v-if="spinner">
+    <div class="contain">
+            <div v-if="spinner">
                 <SpinnerComponent/>        
         </div>
-    <div v-else class="container px-5"> -->
+    <div v-else class="container px-5">
             <form action="">
             <div class="mb-3">
                 <input type="text" v-model="search" class="form-control" placeholder="Search by name" aria-label="Search" id="exampleFormControlInput1">
@@ -28,18 +28,18 @@
                 </div>
             </div>
         </div>
-        <!-- </div> -->
+        </div>
         </div>
 </template>
 
 <script>
 import { computed } from '@vue/runtime-core';
 import { useStore } from 'vuex';
-// import SpinnerComponent from "../components/SpinnerComponent.vue"
+import SpinnerComponent from "../components/SpinnerComponent.vue"
 export default {
-    // components: {
-    //     SpinnerComponent
-    // },
+    components: {
+        SpinnerComponent
+    },
     methods: {
         sortByPrice: function () {
             this.$store.commit("sortByPrice")
@@ -84,5 +84,8 @@ export default {
 h2 {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-top:10px;
+}
+.contain {
+background-color:white !important;
 }
 </style> 
